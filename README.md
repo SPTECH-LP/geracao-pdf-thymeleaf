@@ -16,11 +16,17 @@ Em vez de montar o PDF peça por peça em código Java, vamos escrever o layout 
 
 O processo tem duas etapas, e cada uma usa uma biblioteca diferente:
 
-```
-   Template HTML           Thymeleaf             HTML pronto          OpenHTMLtoPDF          PDF
-(com "lacunas" ${...})  ───────────────▶   (lacunas preenchidas)  ──────────────────▶   (arquivo final)
-        +                preenche os
-  Lista de produtos         dados
+```mermaid
+flowchart LR
+    A("<b>Template HTML</b><br/>+ lista de produtos") -- " 1. Thymeleaf<br/>preenche os dados " --> B("<b>HTML pronto</b><br/>String")
+    B -- " 2. OpenHTMLtoPDF<br/>converte " --> C("<b>relatorio-estoque.pdf</b>")
+
+    classDef entrada fill:#eaefff,stroke:#1B3FE0,stroke-width:2px,color:#141238
+    classDef meio fill:#ffe9f3,stroke:#F0257A,stroke-width:2px,color:#141238
+    classDef saida fill:#e9f9ef,stroke:#1f8a4c,stroke-width:2px,color:#141238
+    class A entrada
+    class B meio
+    class C saida
 ```
 
 | Etapa | Biblioteca        | Entrada                      | Saída                  |
